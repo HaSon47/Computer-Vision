@@ -1,11 +1,9 @@
-# Done
+# Todo
 
 - [x] Geometric primitives (18/4/2025)
 
-
-
-# To do
-
-- [ ] 2D Transformations
+- [x] 2D Transformations (20/4/2025)
 
 - [ ] 3D Transformations
+  
+  - [ ] Rotation representation

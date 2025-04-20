@@ -134,3 +134,34 @@ Spherical coordinates
 ## Geometric Transformation
 
 `Các cách biểu diễn các phép biến đổi 2D, 3D trong Geometric`
+
+note: 
+
+$\mathbf{x}:$ tọa độ decac
+
+$\bar{\mathbf{x}}:$ augment vector
+
+$\tilde{\mathbf{x}}:$ homogeneous coordinate
+
+#### 2D
+
+![](C:\Users\Lenovo\OneDrive%20-%20Hanoi%20University%20of%20Science%20and%20Technology\Desktop\Self_learning\Computer-Vision\image\2Dtrans.png)
+
+> where $\mathbf{R}$ is an orthonormal matrix $\mathbf{RR}^T= \mathbf{I}$ and $\det(\mathbf{R})=1$
+> 
+> $$
+> R = \begin{bmatrix}
+\cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta 
+\end{bmatrix} 
+> $$
+
+#### 3D
+
+![](C:\Users\Lenovo\OneDrive%20-%20Hanoi%20University%20of%20Science%20and%20Technology\Desktop\Self_learning\Computer-Vision\image\3Dtrans.png)
+
+Represent rotation : parameterizing $\mathbf{R}$:
+
+1. Axis/angle (exponential twist)
+
+2. Unit quaternions
