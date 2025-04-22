@@ -6,4 +6,5 @@
 
 - [ ] 3D Transformations
   
-  - [ ] Rotation representation
+  - [x] Rotation representation (22/4/2025)
+  - [ ] 3D to 2D projections

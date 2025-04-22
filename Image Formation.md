@@ -39,6 +39,24 @@ Khi đó, xét homogeneous coordinate
 > \tilde{\mathbf{x}}' = \mathbf{M}\tilde{\mathbf{x}}
 > $$
 
+#### Quaternion:
+
+`Tập hợp mở rộng của Complex, kí hiệu` $\mathbf{H}$
+
+> $q= a+bi+cj+dk$
+> 
+> trong đó:
+> 
+> $a,b,c,d \in R$
+> 
+> $i,j,k$ là đơn vị ảo thỏa mãn: $i^2=j^2=k^2=ijk=-1$
+
+> Thường dùng để biểu diễn phép rotation.
+
+Unit quaternions:
+
+> $\mathbf{q}\in\mathbf{H}: ||\mathbf{q}||=1$
+
 ## Geometric primitives
 
 `Các cách để biểu diễn điểm, đường thẳng, mặt phẳng 2D 3D trong Geometric` 
@@ -162,6 +180,86 @@ $\tilde{\mathbf{x}}:$ homogeneous coordinate
 
 Represent rotation : parameterizing $\mathbf{R}$:
 
-1. Axis/angle (exponential twist)
+1. Euler angles
+   
+   > $\mathbf{R}$ : product of three rotations around three cardinal axes: $\alpha, \beta, \gamma$
+   
+   > note: nhiều khả năng gặp Gimbal lock
 
-2. Unit quaternions
+2. Axis-Angle (Exponential Twist)
+   
+   > $(\hat{\mathbf{n}}, \theta)$ 
+   > 
+   > where $\hat{\mathbf{n}}=(\hat{n}_x,\hat{n}_y,\hat{n}_z)$ is trục quay, $\theta$ is góc quay. 
+   > 
+   > We have Rodrigues's formula:
+   > 
+   > $$
+   > \mathbf{R}(\hat{\mathbf{n}},\theta)=
+\mathbf{I}+\sin\theta[\hat{\mathbf{n}}]_{\times}
++(1-\cos\theta)[\hat{\mathbf{n}}]_{\times}^2
+   > $$
+   > 
+   > where
+   > 
+   > $$
+   > [\hat{\mathbf{n}}]_{\times}=
+\begin{bmatrix}
+0 & -\hat{n}_z & \hat{n}_y \\
+\hat{n}_z & 0 & -\hat{n}_x \\
+-\hat{n}_y & \hat{n}_x & 0
+\end{bmatrix}
+   > $$
+
+3. Unit quaternions
+   
+   > $\mathbf{q}=(\mathbf{v},w)=(\sin \frac{\theta}{2}\hat{\mathbf{n}},\cos \frac{\theta}{2})$
+   > 
+   > where $\hat{\mathbf{n}}, \theta$ are the rotation axis and angle
+   > 
+   > We have:
+   > 
+   > $$
+   > \mathbf{R}(\hat{\mathbf{n}},\theta)=
+\mathbf{I}+2w[\mathbf{v}]_{\times}
++2[\mathbf{v}]_{\times}^2
+   > $$
+   > 
+   > or with unit quaternion $\mathbf{q}=(x,y,z,w):$
+   > 
+   > $$
+   > \mathbf{R}(\mathbf{q})=
+\begin{bmatrix}
+1-2(y^2+z^2)&2(xy-zw)&2(xz+yw)\\
+2(xy+zw)&1-2(x^2+z^2)&2(yz-xw)\\
+2(xz-yw)&2(yz+xw)&1-2(x^2+y^2)
+\end{bmatrix}
+   > $$
+   > 
+   >  .
+   
+   > Dùng cái này thì dễ để biểu diễn nhân các phép quay hay là lấy inverse
+   
+   Quaternion multiply operator:
+   
+   > $\mathbf{q}_0=(\mathbf{v}_0,w_0)$ , $\mathbf{q}_1=(\mathbf{v}_1,w_1)$
+   
+   > $\mathbf{q}_2=\mathbf{q}_0\mathbf{q}_1=(\mathbf{v}_0\times\mathbf{v}_1+w_0\mathbf{v}_1+w_1\mathbf{v}_0,w_0w_1-\mathbf{v}_0\mathbf{v}_1)$
+   > 
+   > we have:
+   > 
+   > $$
+   > \mathbf{R}(\mathbf{q}_2)=
+\mathbf{R}(\mathbf{q}_0)
+\mathbf{R}(\mathbf{q}_1)
+   > $$
+   
+   Inverse of a quaternion:
+   
+   > Just flip the sign of $\mathbf{v}$ or $w$ $=$ lấy transposing của $\mathbf{R}$
+   
+   Quaternion division:
+   
+   > $\mathbf{q}_2=\mathbf{q}_0/\mathbf{q}_1=\mathbf{q}_0\mathbf{q}_1^{-1}=(\mathbf{v}_0\times\mathbf{v}_1+w_0\mathbf{v}_1-w_1\mathbf{v}_0,-w_0w_1-\mathbf{v}_0\mathbf{v}_1)$
+
+#### 3D to 2D projections
